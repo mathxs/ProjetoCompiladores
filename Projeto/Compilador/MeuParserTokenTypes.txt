@@ -1,0 +1,4 @@
+// $ANTLR 2.7.6 (2005-12-22): gramatica.g -> MeuParserTokenTypes.txt$
+MeuParser    // output token vocab name
+T_EOF=4
+T_mais=5
