@@ -1,23 +1,127 @@
 class MeuParser extends Parser;
 {
-    System.out.printl("Parse está compilando");
 }
 
-expr        :   expr_C T_EOF
-            ;
+begi	: T_inicio T_id (decl)* (body)* T_fim
+		; 
 
-expr_C      :   T_mais
-            ;
+decl	: T_decl T_id T_eol
+		;
 
+attr	: T_id T_attr expr_c T_eol
+		;
+
+body	: cmd | cond | whle | do_w
+		;
+
+cmd		: cmd_l | cmd_w | attr
+		;
+
+cmd_l	: T_leia T_ap T_id T_fp T_eol
+		;
+
+cmd_w	: T_escr T_ap T_id T_fp T_eol
+		;
+
+cond 	:  T_se T_ap expr_b T_fp T_ac (cmd)* T_fc (T_senao T_ac (cmd)* T_fc)?
+		;
+
+whle 	: T_enqu T_ap expr_b T_fp T_ac (cmd)* T_fc
+		;
+
+do_w	: T_do T_ac (cmd)* T_fc T_enqu T_ap expr_b T_fp
+		;
+
+expr_b	: expr_c T_bool expr_c
+		;
+
+expr 	: expr_c T_eol
+        ;
+
+expr_c  : termo ((T_plus  | T_minus) termo)* 
+		;
+		
+termo	: fator ((T_times | T_divi) fator)*
+		;
+		
+fator	: valor | T_ap expr_c T_fp
+		;
+
+valor 	: (T_minus | T_pls)? (T_id| T_num)
+		;
 
 
 class MeuLexer extends Lexer;
+options
 {
-    System.out.printl("Lexer está compilando");
+	k = 6;
 }
 
-T_EOF       :   ';'
-            ;
+T_id    : 'a'..'z'|'A'..'Z' ('a'..'z' | 'A'..'Z' | '0'..'9')*
+		;		
 
-T_mais      :   '+'
-            ;
+T_num	: ('0'..'9')+ ('.' ('0'..'9')+)?
+		;
+
+T_plus  : '+'
+		;
+		
+T_minus : '-'
+		;
+		
+T_times : '*'
+		;
+		
+T_divi  : '/'
+		;
+
+T_bool	: "==" | "!=" | '>' | '<' | ">=" | "<="
+		;
+
+T_attr	: ":="
+		;
+
+T_ap	: '('
+		;
+		
+T_eol   : ';'
+		;
+		
+T_fp	: ')'
+		;
+
+T_ac	: '{'
+		;
+
+T_fc	: '}'
+		;
+
+T_inicio : "_progInicio"
+		;
+
+T_fim 	: "_progFim"
+		;
+
+T_decl	: "_var"
+		;
+
+T_leia	: "_leia"
+		;
+
+T_escr	: "_escreva"
+		;
+
+T_se 	: "_se"
+		;
+
+T_senao	: "_senao"
+		;
+
+T_enqu	: "_enquanto"
+		;
+
+T_do	: "_faca"
+		;
+
+T_blank	: (' ' | '\n' {newline();} | '\r' | '\t' ) {_ttype=Token.SKIP;}
+		;

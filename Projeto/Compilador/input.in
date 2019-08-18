@@ -1,0 +1,43 @@
+_progInicio NomePrograma
+
+_var a;
+_var b;
+
+_var c;
+_var d;
+_var e;
+
+a := -10;
+b := a * 4;
+
+c := -10.654;
+d := b + 10.44;
+
+
+_se (a == 0)
+{
+	_escreva(a);
+}
+_senao
+{
+	_escreva(b);
+}
+
+
+_enquanto (b >= 0)
+{
+	b := b - 1;
+	_escreva(b);
+}
+
+
+_faca
+{
+	_escreva(c);
+	_leia(e);
+	_escreva(e);
+}
+_enquanto (e != 0)
+
+
+_progFim
