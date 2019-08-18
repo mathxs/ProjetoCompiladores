@@ -1,0 +1,10 @@
+_progInicio NomePrograma
+
+_int a;
+_int b;
+
+_dec c;
+_dec d;
+_dec e;
+
+_progFim
