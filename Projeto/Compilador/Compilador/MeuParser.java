@@ -20,6 +20,9 @@ public class MeuParser extends antlr.LLkParser       implements MeuParserTokenTy
 	Programa prog;
 
 	Declaracao declaracao;
+	Atribuicao atribuicao;
+
+	//Expressao expressao;
 
 protected MeuParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
@@ -79,7 +82,7 @@ public MeuParser(ParserSharedInputState state) {
 			}
 			match(T_fim);
 			
-							prog.ToFile();
+							prog.toFile();
 						
 		}
 		catch (RecognitionException ex) {
@@ -153,8 +156,15 @@ public MeuParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			match(T_id);
+			
+							atribuicao = new Atribuicao(LT(0).getText());
+						
 			match(T_attr);
 			expr_c();
+			
+							atribuicao.setValor("10");
+					 		prog.addComando(atribuicao);
+					 	
 			match(T_eol);
 		}
 		catch (RecognitionException ex) {

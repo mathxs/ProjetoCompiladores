@@ -3,6 +3,9 @@ class MeuParser extends Parser;
 	Programa prog;
 
 	Declaracao declaracao;
+	Atribuicao atribuicao;
+
+	//Expressao expressao;
 }
 
 begi	: 	T_inicio T_id
@@ -12,7 +15,7 @@ begi	: 	T_inicio T_id
 			(decl)* (body)*
 			T_fim
 			{
-				prog.ToFile();
+				prog.toFile();
 			}
 		; 
 
@@ -28,7 +31,16 @@ decl	:	T_decl
 			T_eol
 		;
 
-attr	: T_id T_attr expr_c T_eol
+attr	:	T_id
+			{
+				atribuicao = new Atribuicao(LT(0).getText());
+			}
+		 	T_attr expr_c
+		 	{
+				atribuicao.setValor("10");
+		 		prog.addComando(atribuicao);
+		 	}
+		 	T_eol
 		;
 
 body	: cmd | cond | whle | do_w
@@ -77,7 +89,7 @@ options
 	k = 6;
 }
 
-T_id    : 'a'..'z'|'A'..'Z' ('a'..'z' | 'A'..'Z' | '0'..'9')*
+T_id    : ('a'..'z'|'A'..'Z') ('a'..'z' | 'A'..'Z' | '0'..'9')*
 		;		
 
 T_num	: ('0'..'9')+ ('.' ('0'..'9')+)?

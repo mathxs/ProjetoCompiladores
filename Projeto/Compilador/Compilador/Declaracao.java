@@ -1,4 +1,4 @@
-public class Declaracao
+class Declaracao
 {
 	private String _tipo;
 	private String _nome;
@@ -24,12 +24,17 @@ public class Declaracao
 		}
 	}
 
+	public String getNome()
+	{
+		return _nome;
+	}
+
 	public void setNome(String nome)
 	{
 		_nome = nome;	
 	}
 
-	public String ToJava()
+	public String toJava()
 	{
 		return _tipo + " " + _nome + ";\n";
 	}

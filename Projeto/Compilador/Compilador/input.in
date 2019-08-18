@@ -2,9 +2,13 @@ _progInicio NomePrograma
 
 _int a;
 _int b;
+_int xx;
 
 _dec c;
 _dec d;
 _dec e;
+
+a := 10;
+xx := 20;
 
 _progFim
