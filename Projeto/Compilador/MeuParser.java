@@ -17,6 +17,12 @@ import antlr.collections.impl.BitSet;
 public class MeuParser extends antlr.LLkParser       implements MeuParserTokenTypes
  {
 
+	Programa prog;
+
+	Declaracao declaracao;
+	Atribuicao atribuicao;
+
+	//Expressao expressao;
 
 protected MeuParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
@@ -47,6 +53,9 @@ public MeuParser(ParserSharedInputState state) {
 		try {      // for error handling
 			match(T_inicio);
 			match(T_id);
+			
+							prog = new Programa(LT(0).getText());
+						
 			{
 			_loop3:
 			do {
@@ -72,6 +81,9 @@ public MeuParser(ParserSharedInputState state) {
 			} while (true);
 			}
 			match(T_fim);
+			
+							prog.toFile();
+						
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
@@ -84,7 +96,14 @@ public MeuParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			match(T_decl);
+			
+							declaracao = new Declaracao(LT(0).getText());
+						
 			match(T_id);
+			
+							declaracao.setNome(LT(0).getText());
+							prog.addVariavel(declaracao);
+						
 			match(T_eol);
 		}
 		catch (RecognitionException ex) {
@@ -137,8 +156,15 @@ public MeuParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			match(T_id);
+			
+							atribuicao = new Atribuicao(LT(0).getText());
+						
 			match(T_attr);
 			expr_c();
+			
+							atribuicao.setValor("10");
+					 		prog.addComando(atribuicao);
+					 	
 			match(T_eol);
 		}
 		catch (RecognitionException ex) {
