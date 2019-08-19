@@ -4,7 +4,8 @@ class MeuParser extends Parser;
 
 	Declaracao declaracao;
 	Atribuicao atribuicao;
-
+	Ler leitura;
+	Escrever escrita;
 	//Expressao expressao;
 }
 
@@ -50,10 +51,20 @@ body	: cmd | cond | whle | do_w
 cmd		: cmd_l | cmd_w | attr
 		;
 
-cmd_l	: T_leia T_ap T_id T_fp T_eol
+cmd_l	: 	T_leia T_ap T_id
+			{
+				leitura = new Ler(LT(0).getText());
+				prog.addComando(leitura);
+			}
+			T_fp T_eol
 		;
 
-cmd_w	: T_escr T_ap T_id T_fp T_eol
+cmd_w	: 	T_escr T_ap T_id
+			{
+				escrita = new Escrever(LT(0).getText());
+				prog.addComando(escrita);
+			}
+			T_fp T_eol
 		;
 
 cond 	:  T_se T_ap expr_b T_fp T_ac (cmd)* T_fc (T_senao T_ac (cmd)* T_fc)?

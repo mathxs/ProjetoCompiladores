@@ -14,5 +14,7 @@ public class NomePrograma
 		a = 10;
 		e = -10.20;
 		b = -10;
+		a = scanner_0.nextLine();
+		System.out.println(b);
 	}
 }
