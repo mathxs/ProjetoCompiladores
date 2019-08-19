@@ -56,7 +56,7 @@ public class Programa
 		{
 			fs.write("public class " + _nome + "\n{\n");
 			fs.write("\tpublic static void main(String[] args)\n\t{\n");
-			fs.write("\t\tScanner " + INPUT + "= new System.util.Scanner(System.in);\n");
+			fs.write("\t\tjava.util.Scanner " + INPUT + " = new java.util.Scanner(System.in);\n");
 			fs.write("\t\t\n");
 
 			for (Declaracao decl : declaracoes)

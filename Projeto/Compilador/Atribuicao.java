@@ -2,6 +2,7 @@ public class Atribuicao extends Comando
 {
 	private String _atribuido;
 	private String _valor;
+	private String _sinal = "";
 
 	public Atribuicao(String id)
 	{
@@ -18,6 +19,23 @@ public class Atribuicao extends Comando
 		return _atribuido;
 	}
 
+	public void setSinal(String sinal)
+	{	
+		if (sinal.equals("-") || sinal.equals("+"))
+		{
+			_sinal = sinal;
+		}else
+		{
+			_sinal = "";
+		}
+		
+	}
+
+	public String getSinal()
+	{
+		return _sinal;
+	}
+
 	public ComandoTipo getTipo()
 	{
 		return ComandoTipo.Atribuicao;
@@ -25,6 +43,6 @@ public class Atribuicao extends Comando
 
 	public String toJava()
 	{
-		return _atribuido + " = " + _valor + ";\n";
+		return _atribuido + " = " + _sinal + "" + _valor + ";\n";
 	}
 }

@@ -158,12 +158,15 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_id);
 			
 							atribuicao = new Atribuicao(LT(0).getText());
+							//System.out.println("ID:" + LT(0).getText());
 						
 			match(T_attr);
 			expr_c();
 			
-							atribuicao.setValor("10");
+							atribuicao.setValor(LT(0).getText());
 					 		prog.addComando(atribuicao);
+							System.out.println("expr_c: " + LT(0).getText());
+			
 					 	
 			match(T_eol);
 		}
@@ -532,6 +535,10 @@ public MeuParser(ParserSharedInputState state) {
 			}
 			}
 			}
+				
+							atribuicao.setSinal(LT(0).getText());	
+							System.out.println("sinal: " + LT(0).getText());						
+						
 			{
 			switch ( LA(1)) {
 			case T_id:
