@@ -77,6 +77,8 @@ public class Programa
 				fs.write("\t\t" + decl.toJava());
 			}
 
+			fs.write("\n");
+
 			for (Comando cmd : comandos)
 			{
 				fs.write("\t\t" + cmd.toJava());

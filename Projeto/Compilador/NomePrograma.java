@@ -10,6 +10,7 @@ public class NomePrograma
 		double c;
 		double d;
 		double e;
+
 		a = 10;
 		e = -10.20;
 		b = -10;

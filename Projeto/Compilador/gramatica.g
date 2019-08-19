@@ -34,13 +34,11 @@ decl	:	T_decl
 attr	:	T_id
 			{
 				atribuicao = new Atribuicao(LT(0).getText());
-				//System.out.println("ID:" + LT(0).getText());
 			}
 		 	T_attr expr_c
 		 	{
 				atribuicao.setValor(LT(0).getText());
 		 		prog.addComando(atribuicao);
-				System.out.println("expr_c: " + LT(0).getText());
 
 		 	}
 		 	T_eol
@@ -86,7 +84,7 @@ fator	: valor | T_ap expr_c T_fp
 valor 	: 	(T_minus | T_pls)?
 			{	
 				atribuicao.setSinal(LT(0).getText());	
-				System.out.println("sinal: " + LT(0).getText());						
+				//System.out.println("sinal: " + LT(0).getText());						
 			}
 			(T_id| T_num)
 		;
