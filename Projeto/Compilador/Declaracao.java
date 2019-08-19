@@ -34,6 +34,16 @@ class Declaracao
 		_nome = nome;	
 	}
 
+	public void setTipo(String tipo)
+	{
+		_tipo = tipo;	
+	}
+
+	public String getTipo()
+	{
+		return _tipo;
+	}
+
 	public String toJava()
 	{
 		return _tipo + " " + _nome + ";\n";

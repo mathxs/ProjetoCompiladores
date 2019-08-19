@@ -11,10 +11,7 @@ public class NomePrograma
 		double d;
 		double e;
 		a = 10;
-
-		e = 10.20;
+		e = -10.20;
 		b = -10;
-
-		System.out.println(e+b+1);
 	}
 }

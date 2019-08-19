@@ -30,13 +30,22 @@ public class Programa
 		if (cmd.getTipo() == Comando.ComandoTipo.Atribuicao)
 		{
 			String atribuido = ((Atribuicao)cmd).getAtribuido();
+			String tipo = ((Atribuicao)cmd).getTipoValido();
+			String tipoEsperado = ""; 
+
 			boolean existe = false;
+			boolean tipoCorreto = false;
 
 			for (Declaracao decl : declaracoes)
 			{
 				if (decl.getNome().equals(atribuido))
 				{
+					if (decl.getTipo().equals(tipo))
+					{
+						tipoCorreto = true;
+					}
 					existe = true;
+					tipoEsperado = decl.getTipo();
 					break;
 				}
 			}
@@ -44,6 +53,10 @@ public class Programa
 			if (!existe)
 			{
 				throw new RuntimeException("Variável não declarada " + ((Atribuicao)cmd).getAtribuido());
+			}
+			if(!tipoCorreto)
+			{
+				throw new RuntimeException("Tipos não compatíveis, era esperado um " + tipoEsperado + " e foi encontrado um " + tipo);
 			}
 		}
 		comandos.add(cmd);

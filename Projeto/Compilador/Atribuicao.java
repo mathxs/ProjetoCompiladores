@@ -45,4 +45,23 @@ public class Atribuicao extends Comando
 	{
 		return _atribuido + " = " + _sinal + "" + _valor + ";\n";
 	}
+
+	public String getTipoValido()
+	{
+		if (_valor.contains("."))
+		{
+			return "double";
+		}
+		else
+		{
+			return "int";
+		}
+		/*
+		else 
+		{
+			throw new RuntimeException("Tipo de variável não suportada " + tipo);
+			return "Variavel não identificada";
+		}
+		*/
+	}	
 }
