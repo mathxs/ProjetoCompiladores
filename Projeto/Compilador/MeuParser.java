@@ -177,8 +177,10 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_attr);
 			expr_c();
 			
-							atribuicao.setValor(LT(0).getText());
+							//atribuicao.setValor(LT(0).getText());
+							//atribuicao.juntar();				
 					 		prog.addComando(atribuicao);
+							atribuicao = new Atribuicao();
 			
 					 	
 			match(T_eol);
@@ -216,6 +218,10 @@ public MeuParser(ParserSharedInputState state) {
 					}
 					}
 					}
+						
+									atribuicao.setSinal(LT(0).getText());
+									//System.out.println("sinal: " + LT(0).getText());						
+								
 					termo();
 				}
 				else {
@@ -523,6 +529,10 @@ public MeuParser(ParserSharedInputState state) {
 					}
 					}
 					}
+						
+									atribuicao.setSinal(LT(0).getText());
+									//System.out.println("sinal: " + LT(0).getText());						
+								
 					fator();
 				}
 				else {
@@ -549,6 +559,10 @@ public MeuParser(ParserSharedInputState state) {
 			case T_num:
 			{
 				valor();
+				
+								atribuicao.setValor(LT(0).getText());
+								atribuicao.juntar();
+							
 				break;
 			}
 			case T_ap:
@@ -598,7 +612,7 @@ public MeuParser(ParserSharedInputState state) {
 			}
 			}
 				
-							atribuicao.setSinal(LT(0).getText());	
+							atribuicao.setSinal(LT(0).getText());
 							//System.out.println("sinal: " + LT(0).getText());						
 						
 			{

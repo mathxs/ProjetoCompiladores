@@ -52,8 +52,10 @@ attr	:	T_id
 			}
 		 	T_attr expr_c
 		 	{
-				atribuicao.setValor(LT(0).getText());
+				//atribuicao.setValor(LT(0).getText());
+				//atribuicao.juntar();				
 		 		prog.addComando(atribuicao);
+				atribuicao = new Atribuicao();
 
 		 	}
 		 	T_eol
@@ -147,19 +149,34 @@ expr_b	: 	expr_c
 expr 	: expr_c T_eol
         ;
 
-expr_c  : termo	((T_plus  | T_minus) termo)*
+expr_c  : 	termo	((T_plus  | T_minus)
+			{	
+				atribuicao.setSinal(LT(0).getText());
+				//System.out.println("sinal: " + LT(0).getText());						
+			}
+			termo)*
 				
 		;
 		
-termo	: fator	((T_times | T_divi) fator)*
+termo	: fator	((T_times | T_divi)
+			{	
+				atribuicao.setSinal(LT(0).getText());
+				//System.out.println("sinal: " + LT(0).getText());						
+			}
+			fator)*
 		;
 		
-fator	: valor | T_ap expr_c T_fp
+fator	: 	valor
+			{
+				atribuicao.setValor(LT(0).getText());
+				atribuicao.juntar();
+ 			}
+			| T_ap expr_c T_fp
 		;
 
 valor 	: 	(T_minus | T_pls)?
 			{	
-				atribuicao.setSinal(LT(0).getText());	
+				atribuicao.setSinal(LT(0).getText());
 				//System.out.println("sinal: " + LT(0).getText());						
 			}
 			(T_id| T_num)
