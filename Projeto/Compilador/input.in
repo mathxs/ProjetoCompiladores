@@ -15,4 +15,40 @@ b := -10;
 _leia(a);
 _escreva(b);
 
+_enquanto(a == b){
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}
+
+_se(a == b){
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}_senao{
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}
+
+_faca{
+    e := -10.20;
+    b := -10;
+
+    _leia(a);
+    _escreva(b);
+}_enquanto(e == b)
+
 _progFim

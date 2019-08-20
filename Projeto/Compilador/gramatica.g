@@ -1,12 +1,26 @@
 class MeuParser extends Parser;
 {
+	//Programa
 	Programa prog;
 
+	//Inicio
 	Declaracao declaracao;
 	Atribuicao atribuicao;
+	
+	//comandos basicos
 	Ler leitura;
 	Escrever escrita;
-	//Expressao expressao;
+
+	//comandos complexos
+	While loop;
+	DoWhile doLoop;
+	Condicional condicional;
+
+	//auxiliares para comandos complexos
+	String ex1;
+	String atri;
+	String ex2;
+
 }
 
 begi	: 	T_inicio T_id
@@ -67,16 +81,67 @@ cmd_w	: 	T_escr T_ap T_id
 			T_fp T_eol
 		;
 
-cond 	:  T_se T_ap expr_b T_fp T_ac (cmd)* T_fc (T_senao T_ac (cmd)* T_fc)?
+cond 	:  	T_se T_ap expr_b
+			{
+				condicional = new Condicional(ex1 + " " + atri + " " + ex2,1);
+				prog.addComando(condicional);
+			}
+			T_fp T_ac (cmd)* 
+			{
+				condicional = new Condicional(2);
+				prog.addComando(condicional);
+			} 
+			T_fc (T_senao
+			{
+				condicional = new Condicional(3);
+				prog.addComando(condicional);
+			}
+			T_ac (cmd)*
+			{
+				condicional = new Condicional(2);
+				prog.addComando(condicional);
+			}
+			T_fc)?
 		;
 
-whle 	: T_enqu T_ap expr_b T_fp T_ac (cmd)* T_fc
+whle 	: 	T_enqu T_ap expr_b
+			{
+				loop = new While(ex1 + " " + atri + " " + ex2,1);
+				prog.addComando(loop);
+ 			}
+			T_fp T_ac (cmd)* 
+			{
+				loop = new While(2);
+				prog.addComando(loop);
+ 			}
+			T_fc
 		;
 
-do_w	: T_do T_ac (cmd)* T_fc T_enqu T_ap expr_b T_fp
+do_w	: 	T_do
+			{
+				doLoop = new DoWhile(1);
+				prog.addComando(doLoop);
+			}
+			T_ac (cmd)* T_fc T_enqu T_ap expr_b
+			{
+				doLoop = new DoWhile(ex1 + " " + atri + " " + ex2,2);
+				prog.addComando(doLoop);
+			} 
+			T_fp
 		;
 
-expr_b	: expr_c T_bool expr_c
+expr_b	: 	expr_c
+			{
+				ex1 = LT(0).getText();
+			}
+			T_bool
+			{
+				atri = LT(0).getText();
+			}
+			expr_c
+			{
+				ex2 = LT(0).getText();
+			}
 		;
 
 expr 	: expr_c T_eol

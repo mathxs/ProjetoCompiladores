@@ -17,13 +17,27 @@ import antlr.collections.impl.BitSet;
 public class MeuParser extends antlr.LLkParser       implements MeuParserTokenTypes
  {
 
+	//Programa
 	Programa prog;
 
+	//Inicio
 	Declaracao declaracao;
 	Atribuicao atribuicao;
+	
+	//comandos basicos
 	Ler leitura;
 	Escrever escrita;
-	//Expressao expressao;
+
+	//comandos complexos
+	While loop;
+	DoWhile doLoop;
+	Condicional condicional;
+
+	//auxiliares para comandos complexos
+	String ex1;
+	String atri;
+	String ex2;
+
 
 protected MeuParser(TokenBuffer tokenBuf, int k) {
   super(tokenBuf,k);
@@ -256,6 +270,10 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_se);
 			match(T_ap);
 			expr_b();
+			
+							condicional = new Condicional(ex1 + " " + atri + " " + ex2,1);
+							prog.addComando(condicional);
+						
 			match(T_fp);
 			match(T_ac);
 			{
@@ -270,12 +288,20 @@ public MeuParser(ParserSharedInputState state) {
 				
 			} while (true);
 			}
+			
+							condicional = new Condicional(2);
+							prog.addComando(condicional);
+						
 			match(T_fc);
 			{
 			switch ( LA(1)) {
 			case T_senao:
 			{
 				match(T_senao);
+				
+								condicional = new Condicional(3);
+								prog.addComando(condicional);
+							
 				match(T_ac);
 				{
 				_loop17:
@@ -289,6 +315,10 @@ public MeuParser(ParserSharedInputState state) {
 					
 				} while (true);
 				}
+				
+								condicional = new Condicional(2);
+								prog.addComando(condicional);
+							
 				match(T_fc);
 				break;
 			}
@@ -322,6 +352,10 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_enqu);
 			match(T_ap);
 			expr_b();
+			
+							loop = new While(ex1 + " " + atri + " " + ex2,1);
+							prog.addComando(loop);
+						
 			match(T_fp);
 			match(T_ac);
 			{
@@ -336,6 +370,10 @@ public MeuParser(ParserSharedInputState state) {
 				
 			} while (true);
 			}
+			
+							loop = new While(2);
+							prog.addComando(loop);
+						
 			match(T_fc);
 		}
 		catch (RecognitionException ex) {
@@ -349,6 +387,10 @@ public MeuParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			match(T_do);
+			
+							doLoop = new DoWhile(1);
+							prog.addComando(doLoop);
+						
 			match(T_ac);
 			{
 			_loop23:
@@ -366,6 +408,10 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_enqu);
 			match(T_ap);
 			expr_b();
+			
+							doLoop = new DoWhile(ex1 + " " + atri + " " + ex2,2);
+							prog.addComando(doLoop);
+						
 			match(T_fp);
 		}
 		catch (RecognitionException ex) {
@@ -419,8 +465,17 @@ public MeuParser(ParserSharedInputState state) {
 		
 		try {      // for error handling
 			expr_c();
+			
+							ex1 = LT(0).getText();
+						
 			match(T_bool);
+			
+							atri = LT(0).getText();
+						
 			expr_c();
+			
+							ex2 = LT(0).getText();
+						
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
