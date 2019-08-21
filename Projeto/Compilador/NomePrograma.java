@@ -8,7 +8,7 @@ public class NomePrograma
 		int b;
 		int c;
 
-		a = 1;
+		a = 3%2;
 		System.out.println(a);
 	}
 }

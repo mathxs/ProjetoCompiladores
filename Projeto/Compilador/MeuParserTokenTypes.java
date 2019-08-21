@@ -24,7 +24,8 @@ public interface MeuParserTokenTypes {
 	int T_minus = 22;
 	int T_times = 23;
 	int T_divi = 24;
-	int T_pls = 25;
-	int T_num = 26;
-	int T_blank = 27;
+	int T_rest = 25;
+	int T_pls = 26;
+	int T_num = 27;
+	int T_blank = 28;
 }

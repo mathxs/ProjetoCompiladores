@@ -512,7 +512,7 @@ public MeuParser(ParserSharedInputState state) {
 			{
 			_loop33:
 			do {
-				if ((LA(1)==T_times||LA(1)==T_divi)) {
+				if (((LA(1) >= T_times && LA(1) <= T_rest))) {
 					{
 					switch ( LA(1)) {
 					case T_times:
@@ -523,6 +523,11 @@ public MeuParser(ParserSharedInputState state) {
 					case T_divi:
 					{
 						match(T_divi);
+						break;
+					}
+					case T_rest:
+					{
+						match(T_rest);
 						break;
 					}
 					default:
@@ -670,6 +675,7 @@ public MeuParser(ParserSharedInputState state) {
 		"T_minus",
 		"T_times",
 		"T_divi",
+		"T_rest",
 		"T_pls",
 		"T_num",
 		"T_blank"
@@ -716,7 +722,7 @@ public MeuParser(ParserSharedInputState state) {
 	}
 	public static final BitSet _tokenSet_7 = new BitSet(mk_tokenSet_7());
 	private static final long[] mk_tokenSet_8() {
-		long[] data = { 32510208L, 0L};
+		long[] data = { 66064640L, 0L};
 		return data;
 	}
 	public static final BitSet _tokenSet_8 = new BitSet(mk_tokenSet_8());

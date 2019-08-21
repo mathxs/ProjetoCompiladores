@@ -160,7 +160,7 @@ expr_c  : 	termo	((T_plus  | T_minus)
 				
 		;
 		
-termo	: fator	((T_times | T_divi)
+termo	: fator	((T_times | T_divi | T_rest)
 			{	
 				atribuicao.setSinal(LT(0).getText());
 				//System.out.println("sinal: " + LT(0).getText());						
@@ -207,6 +207,9 @@ T_minus : '-'
 T_times : '*'
 		;
 		
+T_rest  : '%'
+		;
+
 T_divi  : '/'
 		;
 

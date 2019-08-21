@@ -27,7 +27,7 @@ public class Atribuicao extends Comando
 
 	public void setSinal(String sinal)
 	{	
-		if (sinal.equals("-") || sinal.equals("+") || sinal.equals("*") || sinal.equals("/"))
+		if (sinal.equals("-") || sinal.equals("+") || sinal.equals("*") || sinal.equals("/") || sinal.equals("%"))
 		{
 			_sinal = sinal;
 		}else
