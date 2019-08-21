@@ -32,12 +32,15 @@ public class Programa
 			String atribuido = ((Atribuicao)cmd).getAtribuido();
 			String tipo = ((Atribuicao)cmd).getTipoValido();
 			String tipoEsperado = ""; 
+			String valorID = "";
 
+			boolean existeValor = true;
 			boolean existe = false;
 			boolean tipoCorreto = false;
 
 			for (Declaracao decl : declaracoes)
 			{
+				//System.out.println("1º" + decl.getNome());
 				if (decl.getNome().equals(atribuido))
 				{
 					if (decl.getTipo().equals(tipo))
@@ -46,13 +49,43 @@ public class Programa
 					}
 					existe = true;
 					tipoEsperado = decl.getTipo();
-					break;
+					//break;
+				}				
+				//System.out.println("1º " + decl.getNome() + " size: " + decl.getValor().size());
+				/*
+				if (decl.getValor().size() == 0)
+				{
+					existeValor = false;
+				}
+				*/
+				for (String val : decl.getValor())
+				{
+					//char c[] = val.toCharArray();
+					//System.out.println("1º " + decl.getNome() + " size: " + decl.getValor().size() + " valor: " + val);
+					if (!Character.isDigit(val.charAt(0)))
+					{
+						existeValor = false;
+						valorID = val;
+						for (Declaracao declBol : declaracoes)
+						{
+							//System.out.println("3º" + declBol.getNome());	
+							if (declBol.getNome().equals(val))
+							{
+								existeValor = true;
+								break;
+							}
+						}
+					}
 				}
 			}
 
 			if (!existe)
 			{
 				throw new RuntimeException("Variável não declarada " + ((Atribuicao)cmd).getAtribuido());
+			}
+			if (!existeValor)
+			{
+				throw new RuntimeException("Variável não declarada " + valorID);
 			}
 			if(!tipoCorreto)
 			{

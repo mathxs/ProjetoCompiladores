@@ -54,7 +54,7 @@ public class Atribuicao extends Comando
 
 	public String getTipoValido()
 	{
-		if (_valor.contains("."))
+		if (_resultado.contains("."))
 		{
 			return "double";
 		}

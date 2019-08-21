@@ -1,7 +1,10 @@
+import java.util.*;
+
 class Declaracao
 {
 	private String _tipo;
 	private String _nome;
+	List<String> _valor = new ArrayList<String>();
 
 	Declaracao()
 	{
@@ -34,9 +37,30 @@ class Declaracao
 		_nome = nome;	
 	}
 
+	public List<String> getValor()
+	{
+		return _valor;
+	}
+
+	public void setValor(String valor)
+	{
+		_valor.add(valor);	
+	}
+
 	public void setTipo(String tipo)
 	{
-		_tipo = tipo;	
+		if (tipo.equals("_int"))
+		{
+			_tipo = "int";
+		}
+		else if (tipo.equals("_dec"))
+		{
+			_tipo = "double";
+		}
+		else 
+		{
+			throw new RuntimeException("Tipo de variável não suportada " + tipo);
+		}
 	}
 
 	public String getTipo()

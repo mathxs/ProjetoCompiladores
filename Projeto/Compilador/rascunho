@@ -1,0 +1,54 @@
+_progInicio NomePrograma
+
+_int a;
+_int b;
+_int xx;
+
+_dec c;
+_dec d;
+_dec e;
+
+a := 10;
+e := -10.20;
+b := 10 + 5 - 6 + 2;
+
+_leia(a);
+_escreva(b);
+
+_enquanto(a == b){
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}
+
+_se(a == b){
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}_senao{
+
+e := -10.20;
+b := -10;
+
+_leia(a);
+_escreva(b);
+
+}
+
+_faca{
+    e := -10.20;
+    b := -10;
+
+    _leia(a);
+    _escreva(b);
+}_enquanto(e == b)
+
+_progFim

@@ -4,7 +4,8 @@ class MeuParser extends Parser;
 	Programa prog;
 
 	//Inicio
-	Declaracao declaracao;
+	Declaracao declaracao;// = new Declaracao();
+
 	Atribuicao atribuicao;
 	
 	//comandos basicos
@@ -37,6 +38,7 @@ begi	: 	T_inicio T_id
 decl	:	T_decl
 			{
 				declaracao = new Declaracao(LT(0).getText());
+				//declaracao.setTipo(LT(0).getText());
 			}
 			T_id
 			{
@@ -169,6 +171,7 @@ termo	: fator	((T_times | T_divi)
 fator	: 	valor
 			{
 				atribuicao.setValor(LT(0).getText());
+				declaracao.setValor(LT(0).getText());
 				atribuicao.juntar();
  			}
 			| T_ap expr_c T_fp

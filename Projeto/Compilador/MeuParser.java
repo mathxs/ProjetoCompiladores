@@ -21,7 +21,8 @@ public class MeuParser extends antlr.LLkParser       implements MeuParserTokenTy
 	Programa prog;
 
 	//Inicio
-	Declaracao declaracao;
+	Declaracao declaracao;// = new Declaracao();
+
 	Atribuicao atribuicao;
 	
 	//comandos basicos
@@ -113,6 +114,7 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_decl);
 			
 							declaracao = new Declaracao(LT(0).getText());
+							//declaracao.setTipo(LT(0).getText());
 						
 			match(T_id);
 			
@@ -561,6 +563,7 @@ public MeuParser(ParserSharedInputState state) {
 				valor();
 				
 								atribuicao.setValor(LT(0).getText());
+								declaracao.setValor(LT(0).getText());
 								atribuicao.juntar();
 							
 				break;
