@@ -4,11 +4,14 @@ public class NomePrograma
 	{
 		java.util.Scanner scanner_0 = new java.util.Scanner(System.in);
 		
-		int a;
-		int b;
-		int c;
+		double aluno1;
+		double aluno2;
+		double media;
 
-		a = 3%2;
-		System.out.println(a);
+		aluno1 = scanner_0.nextInt();
+		aluno2 = scanner_0.nextInt();
+		media = aluno1+aluno2;
+		media = media/2;
+		System.out.println(media);
 	}
 }

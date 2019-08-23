@@ -24,7 +24,7 @@ public class Ler extends Comando
 
 	public String toJava()
 	{
-		return _ler + " = scanner_0.nextInt();\n";
+		return _ler + " = scanner_0.nextDouble();\n";
 	}
 
 }

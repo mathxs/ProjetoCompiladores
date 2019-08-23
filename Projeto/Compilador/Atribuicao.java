@@ -54,13 +54,14 @@ public class Atribuicao extends Comando
 
 	public String getTipoValido()
 	{
+		//System.out.println(_resultado);
 		if (_resultado.contains("."))
 		{
 			return "double";
 		}
 		else
 		{
-			return "int";
+			return "";
 		}
 	}	
 

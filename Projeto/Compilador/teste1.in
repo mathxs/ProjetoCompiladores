@@ -1,0 +1,15 @@
+_progInicio NomePrograma
+
+_dec aluno1;
+_dec aluno2;
+_dec media;
+
+_leia(aluno1);
+_leia(aluno2);
+
+media := aluno1 + aluno2;
+media := media/2;
+
+_escreva(media);
+
+_progFim

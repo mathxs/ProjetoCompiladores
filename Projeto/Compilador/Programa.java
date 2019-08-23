@@ -43,7 +43,7 @@ public class Programa
 				//System.out.println("1º" + decl.getNome());
 				if (decl.getNome().equals(atribuido))
 				{
-					if (decl.getTipo().equals(tipo))
+					if (decl.getTipo().equals(tipo) || tipo.equals(""))
 					{
 						tipoCorreto = true;
 					}
