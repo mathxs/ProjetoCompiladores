@@ -1,16 +1,21 @@
 _progInicio NomePrograma
 
-_dec aluno1;
+_dec valor;
+_dec numero;
+_dec elevado;
 
-_enquanto(1 == 1){
-_escreva(&Nota&);
-_leia(aluno1);
+valor := 0;
 
-_se(aluno1<5){
-    _escreva(&Reprovado&);
-}_senao{
-    _escreva(&Aprovado&);
-}
+_escreva(&Numero&);
+_leia(numero);
+_escreva(&Elevado&);
+_leia(elevado);
 
-}
+_faca{
+    valor := numero*numero;
+    elevado := elevado - 1;
+}_enquanto(elevado<1)
+
+_escreva(valor);
+
 _progFim
