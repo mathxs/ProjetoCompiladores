@@ -92,6 +92,17 @@ public class Programa
 				throw new RuntimeException("Tipos não compatíveis, era esperado um " + tipoEsperado + " e foi encontrado um " + tipo);
 			}
 		}
+		if (cmd.getTipo() == Comando.ComandoTipo.Ler){
+			for (Declaracao decl : declaracoes)
+			{
+				if (decl.getTipo().equals("double")){
+					((Ler)cmd).SetResultado(" = scanner_0.nextDouble();");
+				}else if (decl.getTipo().equals("int")){
+					((Ler)cmd).SetResultado(" = scanner_0.nextInt();");
+				}
+			}
+		}
+
 		comandos.add(cmd);
 	}
 

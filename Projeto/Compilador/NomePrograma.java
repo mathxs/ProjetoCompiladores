@@ -11,9 +11,7 @@ public class NomePrograma
 		while ( 1 == 1 ){
 
 		System.out.println("Nota");
-		if(scanner_0.hasNextInt()){aluno1 = scanner_0.nextInt();}
-		else if (scanner_0.hasNextDouble()){aluno1 = scanner_0.nextDouble();}
-		
+		aluno1 = scanner_0.nextDouble();		
 		if ( aluno1 < 5 ){
 
 		System.out.println("Reprovado");

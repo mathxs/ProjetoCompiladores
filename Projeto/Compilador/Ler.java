@@ -1,6 +1,7 @@
 public class Ler extends Comando
 {
 	private String _ler;
+	private String _resutlado;
 
 	public Ler(String ler)
 	{
@@ -22,10 +23,13 @@ public class Ler extends Comando
 		return ComandoTipo.Ler;
 	}
 
+	public void SetResultado(String temp){
+		_resutlado = _ler + temp;
+	}
+
 	public String toJava()
 	{
-		return "if(scanner_0.hasNextInt()){" + _ler + " = scanner_0.nextInt();}\n" + 
-		"\t\telse if (scanner_0.hasNextDouble()){" + _ler + " = scanner_0.nextDouble();}\n";
+		return _resutlado;
 	}
 
 }
