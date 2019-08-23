@@ -1,5 +1,16 @@
 _progInicio NomePrograma
 
-_escreva(&Hello1Word&);
+_dec aluno1;
+aluno1 := 0;
+_enquanto(1 == 1){
+_escreva(&Nota&);
+_leia(aluno1);
+
+_se(aluno1 < 5){
+    _escreva(&Reprovado&);
+}_senao{
+    _escreva(&Aprovado&);
+}
+}
 
 _progFim

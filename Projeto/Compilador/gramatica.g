@@ -63,10 +63,10 @@ attr	:	T_id
 		 	T_eol
 		;
 
-body	: cmd | cond | whle | do_w
+body	: cmd
 		;
 
-cmd		: cmd_l | cmd_w | attr
+cmd		: cmd_l | cmd_w | attr | cond | whle | do_w
 		;
 
 cmd_l	: 	T_leia T_ap T_id

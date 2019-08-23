@@ -4,7 +4,28 @@ public class NomePrograma
 	{
 		java.util.Scanner scanner_0 = new java.util.Scanner(System.in);
 		
+		double aluno1;
 
-		System.out.println("Hello1Word");
+		aluno1 = 0;
+		
+		while ( 1 == 1 ){
+
+		System.out.println("Nota");
+		if(scanner_0.hasNextInt()){aluno1 = scanner_0.nextInt();}
+		else if (scanner_0.hasNextDouble()){aluno1 = scanner_0.nextDouble();}
+		
+		if ( aluno1 < 5 ){
+
+		System.out.println("Reprovado");
+		
+		}
+		else{
+
+		System.out.println("Aprovado");
+		
+		}
+		
+		}
+
 	}
 }

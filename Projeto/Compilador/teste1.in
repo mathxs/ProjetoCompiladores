@@ -4,9 +4,12 @@ _dec aluno1;
 _dec aluno2;
 _dec media;
 
+_escreva(&Nota1&)
 _leia(aluno1);
+_escreva(&Nota2&)
 _leia(aluno2);
 
+_escreva(&Media&)
 media := aluno1 + aluno2;
 media := media/2;
 

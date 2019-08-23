@@ -133,34 +133,7 @@ public MeuParser(ParserSharedInputState state) {
 		
 		
 		try {      // for error handling
-			switch ( LA(1)) {
-			case T_id:
-			case T_leia:
-			case T_escr:
-			{
-				cmd();
-				break;
-			}
-			case T_se:
-			{
-				cond();
-				break;
-			}
-			case T_enqu:
-			{
-				whle();
-				break;
-			}
-			case T_do:
-			{
-				do_w();
-				break;
-			}
-			default:
-			{
-				throw new NoViableAltException(LT(1), getFilename());
-			}
-			}
+			cmd();
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
@@ -259,6 +232,21 @@ public MeuParser(ParserSharedInputState state) {
 				attr();
 				break;
 			}
+			case T_se:
+			{
+				cond();
+				break;
+			}
+			case T_enqu:
+			{
+				whle();
+				break;
+			}
+			case T_do:
+			{
+				do_w();
+				break;
+			}
 			default:
 			{
 				throw new NoViableAltException(LT(1), getFilename());
@@ -268,163 +256,6 @@ public MeuParser(ParserSharedInputState state) {
 		catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex,_tokenSet_4);
-		}
-	}
-	
-	public final void cond() throws RecognitionException, TokenStreamException {
-		
-		
-		try {      // for error handling
-			match(T_se);
-			match(T_ap);
-			expr_b();
-			
-							condicional = new Condicional(ex1 + " " + atri + " " + ex2,1);
-							prog.addComando(condicional);
-						
-			match(T_fp);
-			match(T_ac);
-			{
-			_loop15:
-			do {
-				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
-					cmd();
-				}
-				else {
-					break _loop15;
-				}
-				
-			} while (true);
-			}
-			
-							condicional = new Condicional(2);
-							prog.addComando(condicional);
-						
-			match(T_fc);
-			{
-			switch ( LA(1)) {
-			case T_senao:
-			{
-				match(T_senao);
-				
-								condicional = new Condicional(3);
-								prog.addComando(condicional);
-							
-				match(T_ac);
-				{
-				_loop18:
-				do {
-					if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
-						cmd();
-					}
-					else {
-						break _loop18;
-					}
-					
-				} while (true);
-				}
-				
-								condicional = new Condicional(2);
-								prog.addComando(condicional);
-							
-				match(T_fc);
-				break;
-			}
-			case T_id:
-			case T_fim:
-			case T_leia:
-			case T_escr:
-			case T_se:
-			case T_enqu:
-			case T_do:
-			{
-				break;
-			}
-			default:
-			{
-				throw new NoViableAltException(LT(1), getFilename());
-			}
-			}
-			}
-		}
-		catch (RecognitionException ex) {
-			reportError(ex);
-			recover(ex,_tokenSet_3);
-		}
-	}
-	
-	public final void whle() throws RecognitionException, TokenStreamException {
-		
-		
-		try {      // for error handling
-			match(T_enqu);
-			match(T_ap);
-			expr_b();
-			
-							loop = new While(ex1 + " " + atri + " " + ex2,1);
-							prog.addComando(loop);
-						
-			match(T_fp);
-			match(T_ac);
-			{
-			_loop21:
-			do {
-				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
-					cmd();
-				}
-				else {
-					break _loop21;
-				}
-				
-			} while (true);
-			}
-			
-							loop = new While(2);
-							prog.addComando(loop);
-						
-			match(T_fc);
-		}
-		catch (RecognitionException ex) {
-			reportError(ex);
-			recover(ex,_tokenSet_3);
-		}
-	}
-	
-	public final void do_w() throws RecognitionException, TokenStreamException {
-		
-		
-		try {      // for error handling
-			match(T_do);
-			
-							doLoop = new DoWhile(1);
-							prog.addComando(doLoop);
-						
-			match(T_ac);
-			{
-			_loop24:
-			do {
-				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
-					cmd();
-				}
-				else {
-					break _loop24;
-				}
-				
-			} while (true);
-			}
-			match(T_fc);
-			match(T_enqu);
-			match(T_ap);
-			expr_b();
-			
-							doLoop = new DoWhile(ex1 + " " + atri + " " + ex2,2);
-							prog.addComando(doLoop);
-						
-			match(T_fp);
-		}
-		catch (RecognitionException ex) {
-			reportError(ex);
-			recover(ex,_tokenSet_3);
 		}
 	}
 	
@@ -482,6 +313,164 @@ public MeuParser(ParserSharedInputState state) {
 						
 			match(T_fp);
 			match(T_eol);
+		}
+		catch (RecognitionException ex) {
+			reportError(ex);
+			recover(ex,_tokenSet_4);
+		}
+	}
+	
+	public final void cond() throws RecognitionException, TokenStreamException {
+		
+		
+		try {      // for error handling
+			match(T_se);
+			match(T_ap);
+			expr_b();
+			
+							condicional = new Condicional(ex1 + " " + atri + " " + ex2,1);
+							prog.addComando(condicional);
+						
+			match(T_fp);
+			match(T_ac);
+			{
+			_loop15:
+			do {
+				if ((_tokenSet_0.member(LA(1)))) {
+					cmd();
+				}
+				else {
+					break _loop15;
+				}
+				
+			} while (true);
+			}
+			
+							condicional = new Condicional(2);
+							prog.addComando(condicional);
+						
+			match(T_fc);
+			{
+			switch ( LA(1)) {
+			case T_senao:
+			{
+				match(T_senao);
+				
+								condicional = new Condicional(3);
+								prog.addComando(condicional);
+							
+				match(T_ac);
+				{
+				_loop18:
+				do {
+					if ((_tokenSet_0.member(LA(1)))) {
+						cmd();
+					}
+					else {
+						break _loop18;
+					}
+					
+				} while (true);
+				}
+				
+								condicional = new Condicional(2);
+								prog.addComando(condicional);
+							
+				match(T_fc);
+				break;
+			}
+			case T_id:
+			case T_fim:
+			case T_leia:
+			case T_escr:
+			case T_se:
+			case T_fc:
+			case T_enqu:
+			case T_do:
+			{
+				break;
+			}
+			default:
+			{
+				throw new NoViableAltException(LT(1), getFilename());
+			}
+			}
+			}
+		}
+		catch (RecognitionException ex) {
+			reportError(ex);
+			recover(ex,_tokenSet_4);
+		}
+	}
+	
+	public final void whle() throws RecognitionException, TokenStreamException {
+		
+		
+		try {      // for error handling
+			match(T_enqu);
+			match(T_ap);
+			expr_b();
+			
+							loop = new While(ex1 + " " + atri + " " + ex2,1);
+							prog.addComando(loop);
+						
+			match(T_fp);
+			match(T_ac);
+			{
+			_loop21:
+			do {
+				if ((_tokenSet_0.member(LA(1)))) {
+					cmd();
+				}
+				else {
+					break _loop21;
+				}
+				
+			} while (true);
+			}
+			
+							loop = new While(2);
+							prog.addComando(loop);
+						
+			match(T_fc);
+		}
+		catch (RecognitionException ex) {
+			reportError(ex);
+			recover(ex,_tokenSet_4);
+		}
+	}
+	
+	public final void do_w() throws RecognitionException, TokenStreamException {
+		
+		
+		try {      // for error handling
+			match(T_do);
+			
+							doLoop = new DoWhile(1);
+							prog.addComando(doLoop);
+						
+			match(T_ac);
+			{
+			_loop24:
+			do {
+				if ((_tokenSet_0.member(LA(1)))) {
+					cmd();
+				}
+				else {
+					break _loop24;
+				}
+				
+			} while (true);
+			}
+			match(T_fc);
+			match(T_enqu);
+			match(T_ap);
+			expr_b();
+			
+							doLoop = new DoWhile(ex1 + " " + atri + " " + ex2,2);
+							prog.addComando(doLoop);
+						
+			match(T_fp);
 		}
 		catch (RecognitionException ex) {
 			reportError(ex);
