@@ -156,6 +156,12 @@ tryAgain:
 					theRetToken=_returnToken;
 					break;
 				}
+				case '&':
+				{
+					mT_aspas(true);
+					theRetToken=_returnToken;
+					break;
+				}
 				default:
 					if ((LA(1)=='_') && (LA(2)=='p') && (LA(3)=='r') && (LA(4)=='o') && (LA(5)=='g') && (LA(6)=='I')) {
 						mT_inicio(true);
@@ -255,7 +261,7 @@ tryAgain:
 		}
 		}
 		{
-		_loop41:
+		_loop43:
 		do {
 			switch ( LA(1)) {
 			case 'a':  case 'b':  case 'c':  case 'd':
@@ -289,7 +295,7 @@ tryAgain:
 			}
 			default:
 			{
-				break _loop41;
+				break _loop43;
 			}
 			}
 		} while (true);
@@ -307,34 +313,34 @@ tryAgain:
 		int _saveIndex;
 		
 		{
-		int _cnt44=0;
-		_loop44:
+		int _cnt46=0;
+		_loop46:
 		do {
 			if (((LA(1) >= '0' && LA(1) <= '9'))) {
 				matchRange('0','9');
 			}
 			else {
-				if ( _cnt44>=1 ) { break _loop44; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+				if ( _cnt46>=1 ) { break _loop46; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 			}
 			
-			_cnt44++;
+			_cnt46++;
 		} while (true);
 		}
 		{
 		if ((LA(1)=='.')) {
 			match('.');
 			{
-			int _cnt47=0;
-			_loop47:
+			int _cnt49=0;
+			_loop49:
 			do {
 				if (((LA(1) >= '0' && LA(1) <= '9'))) {
 					matchRange('0','9');
 				}
 				else {
-					if ( _cnt47>=1 ) { break _loop47; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
+					if ( _cnt49>=1 ) { break _loop49; } else {throw new NoViableAltForCharException((char)LA(1), getFilename(), getLine(), getColumn());}
 				}
 				
-				_cnt47++;
+				_cnt49++;
 			} while (true);
 			}
 		}
@@ -693,6 +699,19 @@ tryAgain:
 		}
 		}
 		_ttype=Token.SKIP;
+		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
+			_token = makeToken(_ttype);
+			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));
+		}
+		_returnToken = _token;
+	}
+	
+	public final void mT_aspas(boolean _createToken) throws RecognitionException, CharStreamException, TokenStreamException {
+		int _ttype; Token _token=null; int _begin=text.length();
+		_ttype = T_aspas;
+		int _saveIndex;
+		
+		match('&');
 		if ( _createToken && _token==null && _ttype!=Token.SKIP ) {
 			_token = makeToken(_ttype);
 			_token.setText(new String(text.getBuffer(), _begin, text.length()-_begin));

@@ -24,4 +24,5 @@ T_divi=24
 T_rest=25
 T_pls=26
 T_num=27
-T_blank=28
+T_aspas=28
+T_blank=29

@@ -77,10 +77,14 @@ cmd_l	: 	T_leia T_ap T_id
 			T_fp T_eol
 		;
 
-cmd_w	: 	T_escr T_ap T_id
-			{
-				escrita = new Escrever(LT(0).getText());
-				prog.addComando(escrita);
+cmd_w	: 	T_escr T_ap (T_id | linha)
+			{	
+				if(LT(0).getText().equals("&")){
+					//escrita = new Escrever(LT(1).getText());					
+				}else{
+					escrita = new Escrever(LT(0).getText());
+					prog.addComando(escrita);					
+				}
 			}
 			T_fp T_eol
 		;
@@ -185,6 +189,15 @@ valor 	: 	(T_minus | T_pls)?
 			(T_id| T_num)
 		;
 
+linha	:	T_aspas T_id 
+			{
+				String temp_escrita = "\"" + LT(0).getText() + "\"";
+				escrita = new Escrever(temp_escrita);
+				prog.addComando(escrita);
+			}
+			T_aspas
+		;
+
 
 class MeuLexer extends Lexer;
 options
@@ -262,4 +275,7 @@ T_do	: "_faca"
 		;
 
 T_blank	: (' ' | '\n' {newline();} | '\r' | '\t' ) {_ttype=Token.SKIP;}
+		;
+
+T_aspas	: '&'
 		;

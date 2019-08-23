@@ -24,7 +24,8 @@ public class Ler extends Comando
 
 	public String toJava()
 	{
-		return _ler + " = scanner_0.nextDouble();\n";
+		return "if(scanner_0.hasNextInt()){" + _ler + " = scanner_0.nextInt();}\n" + 
+		"\t\telse if (scanner_0.hasNextDouble()){" + _ler + " = scanner_0.nextDouble();}\n";
 	}
 
 }

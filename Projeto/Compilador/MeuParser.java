@@ -199,7 +199,7 @@ public MeuParser(ParserSharedInputState state) {
 		try {      // for error handling
 			termo();
 			{
-			_loop29:
+			_loop30:
 			do {
 				if ((LA(1)==T_plus||LA(1)==T_minus)) {
 					{
@@ -227,7 +227,7 @@ public MeuParser(ParserSharedInputState state) {
 					termo();
 				}
 				else {
-					break _loop29;
+					break _loop30;
 				}
 				
 			} while (true);
@@ -285,13 +285,13 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_fp);
 			match(T_ac);
 			{
-			_loop14:
+			_loop15:
 			do {
 				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
 					cmd();
 				}
 				else {
-					break _loop14;
+					break _loop15;
 				}
 				
 			} while (true);
@@ -312,13 +312,13 @@ public MeuParser(ParserSharedInputState state) {
 							
 				match(T_ac);
 				{
-				_loop17:
+				_loop18:
 				do {
 					if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
 						cmd();
 					}
 					else {
-						break _loop17;
+						break _loop18;
 					}
 					
 				} while (true);
@@ -367,13 +367,13 @@ public MeuParser(ParserSharedInputState state) {
 			match(T_fp);
 			match(T_ac);
 			{
-			_loop20:
+			_loop21:
 			do {
 				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
 					cmd();
 				}
 				else {
-					break _loop20;
+					break _loop21;
 				}
 				
 			} while (true);
@@ -401,13 +401,13 @@ public MeuParser(ParserSharedInputState state) {
 						
 			match(T_ac);
 			{
-			_loop23:
+			_loop24:
 			do {
 				if ((LA(1)==T_id||LA(1)==T_leia||LA(1)==T_escr)) {
 					cmd();
 				}
 				else {
-					break _loop23;
+					break _loop24;
 				}
 				
 			} while (true);
@@ -454,10 +454,31 @@ public MeuParser(ParserSharedInputState state) {
 		try {      // for error handling
 			match(T_escr);
 			match(T_ap);
-			match(T_id);
-			
-							escrita = new Escrever(LT(0).getText());
-							prog.addComando(escrita);
+			{
+			switch ( LA(1)) {
+			case T_id:
+			{
+				match(T_id);
+				break;
+			}
+			case T_aspas:
+			{
+				linha();
+				break;
+			}
+			default:
+			{
+				throw new NoViableAltException(LT(1), getFilename());
+			}
+			}
+			}
+				
+							if(LT(0).getText().equals("&")){
+								//escrita = new Escrever(LT(1).getText());					
+							}else{
+								escrita = new Escrever(LT(0).getText());
+								prog.addComando(escrita);					
+							}
 						
 			match(T_fp);
 			match(T_eol);
@@ -465,6 +486,25 @@ public MeuParser(ParserSharedInputState state) {
 		catch (RecognitionException ex) {
 			reportError(ex);
 			recover(ex,_tokenSet_4);
+		}
+	}
+	
+	public final void linha() throws RecognitionException, TokenStreamException {
+		
+		
+		try {      // for error handling
+			match(T_aspas);
+			match(T_id);
+			
+							String temp_escrita = "\"" + LT(0).getText() + "\"";
+							escrita = new Escrever(temp_escrita);
+							prog.addComando(escrita);
+						
+			match(T_aspas);
+		}
+		catch (RecognitionException ex) {
+			reportError(ex);
+			recover(ex,_tokenSet_6);
 		}
 	}
 	
@@ -510,7 +550,7 @@ public MeuParser(ParserSharedInputState state) {
 		try {      // for error handling
 			fator();
 			{
-			_loop33:
+			_loop34:
 			do {
 				if (((LA(1) >= T_times && LA(1) <= T_rest))) {
 					{
@@ -543,7 +583,7 @@ public MeuParser(ParserSharedInputState state) {
 					fator();
 				}
 				else {
-					break _loop33;
+					break _loop34;
 				}
 				
 			} while (true);
@@ -678,6 +718,7 @@ public MeuParser(ParserSharedInputState state) {
 		"T_rest",
 		"T_pls",
 		"T_num",
+		"T_aspas",
 		"T_blank"
 	};
 	
