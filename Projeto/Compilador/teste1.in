@@ -4,6 +4,8 @@ _dec aluno1;
 _dec aluno2;
 _dec media;
 
+_escreva(&MediaTeste1&);
+
 _escreva(&Nota1&);
 _leia(aluno1);
 _escreva(&Nota2&);

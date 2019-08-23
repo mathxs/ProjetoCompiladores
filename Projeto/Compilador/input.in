@@ -1,21 +1,7 @@
 _progInicio NomePrograma
 
-_dec valor;
-_dec numero;
-_dec elevado;
+_int foo;
 
-valor := 0;
-
-_escreva(&Numero&);
-_leia(numero);
-_escreva(&Elevado&);
-_leia(elevado);
-
-_faca{
-    valor := numero*numero;
-    elevado := elevado - 1;
-}_enquanto(elevado<1)
-
-_escreva(valor);
+_leie(foo);
 
 _progFim

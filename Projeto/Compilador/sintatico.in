@@ -1,0 +1,9 @@
+_progInicio NomePrograma
+
+_dec foo;
+
+foo := 100 + b;
+
+_escreva(foo);
+
+_progFim

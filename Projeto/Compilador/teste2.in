@@ -1,8 +1,10 @@
 _progInicio NomePrograma
 
-_dec aluno1;
+_int aluno1;
+aluno1 := 0;
 
 _enquanto(1 == 1){
+
 _escreva(&Nota&);
 _leia(aluno1);
 

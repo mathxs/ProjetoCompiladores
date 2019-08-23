@@ -1,0 +1,10 @@
+_progInicio NomePrograma
+
+    _dec foo;   
+    _int bar;
+
+    bar := 1.0;
+
+    _escreva(bar);
+
+_progFim
