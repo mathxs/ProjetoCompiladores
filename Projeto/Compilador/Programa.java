@@ -96,9 +96,9 @@ public class Programa
 			for (Declaracao decl : declaracoes)
 			{
 				if (decl.getTipo().equals("double")){
-					((Ler)cmd).SetResultado(" = scanner_0.nextDouble();");
+					((Ler)cmd).SetResultado(" = scanner_0.nextDouble();\n");
 				}else if (decl.getTipo().equals("int")){
-					((Ler)cmd).SetResultado(" = scanner_0.nextInt();");
+					((Ler)cmd).SetResultado(" = scanner_0.nextInt();\n");
 				}
 			}
 		}

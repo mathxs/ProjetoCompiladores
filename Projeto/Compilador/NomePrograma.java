@@ -4,26 +4,22 @@ public class NomePrograma
 	{
 		java.util.Scanner scanner_0 = new java.util.Scanner(System.in);
 		
-		int aluno1;
+		double resultado;
+		double numero;
 
-		aluno1 = 0;
+		resultado = 1;
+		System.out.println("Fatorial3");
+		numero = scanner_0.nextDouble();
+		System.out.println("Numero");
 		
-		while ( 1 == 1 ){
+		do {
 
-		System.out.println("Nota");
-		aluno1 = scanner_0.nextInt();		
-		if ( aluno1 < 5 ){
-
-		System.out.println("Reprovado");
+		resultado = resultado*numero;
+		numero = numero-1;
 		
-		}
-		else{
 
-		System.out.println("Aprovado");
-		
-		}
-		
-		}
+		}while( numero >= 1);
 
+		System.out.println(resultado);
 	}
 }
